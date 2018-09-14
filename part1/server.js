@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var apth = require('path');
 var port = process.env.PORT || 8000;
 
 app.get('/yourroute', function(req, res) {
@@ -20,11 +21,12 @@ app.get('/', function(req, res) {
 })
 
 app.get('/verify/:age', function(req, res) {
-  // var age = `${req.params.age}`
-  if (req.params.age <13) {
+  var age = parseInt(req.params.age);
+  if (age <13) {
     res.sendStatus(403);
-  }else (req.params.age >13)
+  }else{
     res.sendStatus(200);
+  }
 })
 
 app.use(function(req, res) {
